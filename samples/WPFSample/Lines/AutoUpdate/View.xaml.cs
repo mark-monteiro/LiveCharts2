@@ -1,5 +1,9 @@
-﻿using System.Threading.Tasks;
+using System;
+using System.Threading.Tasks;
 using System.Windows.Controls;
+
+using LiveChartsCore.SkiaSharpView.WPF;
+
 using ViewModelsSamples.Lines.AutoUpdate;
 
 namespace WPFSample.Lines.AutoUpdate
@@ -11,9 +15,14 @@ namespace WPFSample.Lines.AutoUpdate
     {
         private bool? isStreaming = false;
 
+        private readonly CartesianChart chart = new CartesianChart();
+
         public View()
         {
             InitializeComponent();
+
+            _ = chart.SetBinding(CartesianChart.SeriesProperty, nameof(ViewModel.Series));
+            ChartWrapper.Content = chart;
         }
 
         private async void Button_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -27,6 +36,11 @@ namespace WPFSample.Lines.AutoUpdate
                 vm.AddItem();
                 await Task.Delay(1000);
             }
+        }
+
+        private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ChartWrapper.Content = ChartWrapper.Content == null ? chart : null;
         }
     }
 }

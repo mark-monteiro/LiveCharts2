@@ -18,7 +18,8 @@
             <Button Margin="6" Command="{Binding AddSeriesCommand}">Add Series</Button>
             <Button Margin="6" Command="{Binding RemoveSeriesCommand}">Remove Series</Button>
             <Button Margin="6" Click="Button_Click">Constant changes</Button>
+            <Button Margin="6" Click="Button_Click_1">Load/Unload Chart</Button>
         </StackPanel>
-        <lvc:CartesianChart Grid.Row="1" Series="{Binding Series}"></lvc:CartesianChart>
+        <ContentControl Grid.Row="1" x:Name="ChartWrapper"/>
     </Grid>
 </UserControl>
